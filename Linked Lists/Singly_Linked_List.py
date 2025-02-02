@@ -577,7 +577,23 @@ def test_linked_list():
         print(result.data, end=" -> ")
         result = result.next
     print("None")
+
+
+    # add 2 linked list
     
+    l1 = LinkedList()
+    l2 = LinkedList()
+    
+    n1 = int(input("Enter 1st number : "))  # 342
+    n2 = int(input("Enter 2nd number : "))  # 240
+                                            # 582 (Total)
+    while n1 : 
+        l1.append(n1%10)   # 2->4->3
+        n1 = n1 // 10   
+    while n2:
+        l2.append(n2%10)   # 0->4->2
+        n2 = n2 // 10
+        
     # Test multiplication of two numbers as linked lists
     print("\nMultiplying two linked list numbers:")
     result = ll.multiply_two_numbers(l1.head, l2.head)
