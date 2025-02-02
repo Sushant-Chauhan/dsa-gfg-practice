@@ -123,17 +123,17 @@ class LinkedList:
 # c c c
 #   0 1 
 
+    
     ''' Reverse the Linked List '''
     def reverse(self):
         prev = None
         current = self.head
         while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        self.head = prev
-
+            next_node = current.next  # Store next node
+            current.next = prev  # Reverse the link
+            prev = current  # Move prev to current
+            current = next_node  # Move current to next
+        self.head = prev  # Update head
 
 
 
