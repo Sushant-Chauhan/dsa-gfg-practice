@@ -657,23 +657,23 @@ def test_linked_list():
     # # Input numbers
     # n1 = int(input("Enter 1st number : "))  
     # n2 = int(input("Enter 2nd number : "))  
-    n1 =  342
+    n1 = 342
     n2 = 240
     
     # Create linked lists for both numbers
-    ln1 = LinkedList()        #ln1 : LinkedList Number 1
-    ln2 = LinkedList()       
+    ll1 = LinkedList()        #ln1 : LinkedList Number 1
+    ll2 = LinkedList()       
     
     while n1:                   # convert number to linkedlist (reverse - inorder to add them)  
-        l1.append(n1 % 10)      # 2->4->3    [342]
+        ll1.append(n1 % 10)      # 2->4->3    [342]
         n1 //= 10
     
     while n2:
-        l2.append(n2 % 10)      # 0->4->2    [240]
+        ll2.append(n2 % 10)      # 0->4->2    [240]
         n2 //= 10
     
     result_ll = LinkedList()
-    result_ll = result_ll.add_two_numbers2(l1.head, l2.head)       # Compute sum of 2 linked lists l1, l2
+    result_ll = result_ll.add_two_numbers2(ll1.head, ll2.head)       # Compute sum of 2 linked lists l1, l2
     
     # Print sum in reverse (default)
     print("Sum in reversed order:")
