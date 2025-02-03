@@ -8,12 +8,10 @@ class Node:
         self.data = data  # Store the data
         self.next = None  # Reference to the next node, initiall2y None
 
-
 class LinkedList:
+    
     def __init__(self):
         self.head = None  # Initialize the linked list with no nodes
-
-
 
     ''' Insert at the End '''
     def append(self, data):
@@ -28,13 +26,11 @@ class LinkedList:
         current.next = new_node
 
 
-
     ''' Insert at the Beginning '''
     def prepend(self, data):
         new_node = Node(data)
         new_node.next = self.head  # Point the new node to the current head
         self.head = new_node
-
 
 
     ''' Delete a Node '''
@@ -62,7 +58,6 @@ class LinkedList:
         print(f"Key {key} not found in the list.")
 
 
-
     ''' Display the List '''  
     def display(self):
         current = self.head
@@ -70,7 +65,6 @@ class LinkedList:
             print(current.data, end=" -> ")
             current = current.next
         print("None")
-
 
 
     ''' Get Length of the Linked List '''
@@ -83,7 +77,6 @@ class LinkedList:
         return count
 
 
-
     ''' Search for an Element '''
     def search(self, key):
         current = self.head
@@ -94,7 +87,6 @@ class LinkedList:
             current = current.next
             position += 1
         return -1  # Return -1 if the element is not found
-
 
 
     ''' Insert at a Specific Position '''
