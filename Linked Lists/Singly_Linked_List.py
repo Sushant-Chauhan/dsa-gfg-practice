@@ -411,11 +411,11 @@ class LinkedList:
             total = carry  
     
             if l1:  
-                total += l1.val
+                total += l1.data
                 l1 = l1.next
     
             if l2:  
-                total += l2.val
+                total += l2.data
                 l2 = l2.next
     
             carry = total // 10  
@@ -429,7 +429,7 @@ class LinkedList:
         current = self.head
         number = 0 
         while current:
-            number = number*10 + current.val
+            number = number*10 + current.data
             current=current.next
         return number
     
@@ -677,13 +677,13 @@ def test_linked_list():
     
     # Print sum in reverse (default)
     print("Sum in reversed order:")
-    result_ll.print_list()
+    result_ll.display()
 
     # Reverse LList - correct order of sum
     result_ll.reverse()
 
     print("Sum in correct order:")
-    result_ll.print_list()
+    result_ll.display()
 
     #Convert LinkedList to Integer number and print it.
     summ = result_ll.ll_to_number()    # 582 (Total)
