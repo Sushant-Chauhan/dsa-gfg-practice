@@ -378,29 +378,60 @@ class LinkedList:
 
 
 
-    ''' Add Two Numbers Represented by Linked Lists'''
+    ''' Add Two Numbers Represented by Linked Lists - with dummy node as result'''
     def add_two_numbers(self, l1, l2):
+        result  = Node(0)   # taking 0 as data - 1st node
+        current = result
         carry = 0
-        dummy = Node(0)
-        current = dummy
         
         while l1 or l2 or carry:
-            val1 = l1.data if l1 else 0
-            val2 = l2.data if l2 else 0
+            total = carry
             
-            total = val1 + val2 + carry
+            if l1:
+                total += l1.data
+                l1 = l1.next
+
+            if l2:
+                total += l2.data
+                l2 = l2.next 
+                 
             carry = total // 10
             current.next = Node(total % 10)
             current = current.next
-            
-            if l1:
-                l1 = l1.next
-            if l2:
-                l2 = l2.next
         
-        return dummy.next
+        return result.next
 
+    
+    ''' Add Two Numbers Represented by Linked Lists - no dummy node '''
+    def add_two_numbers2(self, l1, l2):
+        add_ll = LinkedList()  # Create an empty linked list as added linkedlist
+        carry = 0  
+    
+        while l1 or l2 or carry:
+            total = carry  
+    
+            if l1:  
+                total += l1.val
+                l1 = l1.next
+    
+            if l2:  
+                total += l2.val
+                l2 = l2.next
+    
+            carry = total // 10  
+            add_ll.append(total % 10)  
+    
+        return add_ll  
 
+    
+    ''' Convert Linked List to Number '''
+    def ll_to_number(self):
+        current = self.head
+        number = 0 
+        while current:
+            number = number*10 + current.val
+            current=current.next
+        return number
     
     ''' Multiply Two Numbers Represented by Linked Lists '''
     def multiply_two_numbers(self, l1, l2):
@@ -462,68 +493,98 @@ def test_linked_list():
     ll.append(5)
     print("Initial List:")
     ll.display()
+
+    #-------------------------------
     
     # Test append
     print("\nAppending 6 to the list:")
     ll.append(6)
     ll.display()
+
+    #-------------------------------
     
     # Test prepend
     print("\nPrepending 0 to the list:")
     ll.prepend(0)
     ll.display()
     
+    #-------------------------------
+    
     # Test delete
     print("\nDeleting node with value 3:")
     ll.delete(3)
     ll.display()
+
+    #-------------------------------
     
     # Test get_length
     print("\nLength of the list:", ll.get_length())
+
+    #-------------------------------
     
     # Test search
     print("\nSearching for node with value 4:", ll.search(4))
+
+    #-------------------------------
     
     # Test insert_at_position
     print("\nInserting 9 at position 3:")
     ll.insert_at_position(9, 3)
     ll.display()
+
+    #-------------------------------
     
     # Test reverse
     print("\nReversing the list:")
     ll.reverse()
     ll.display()
+
+    #-------------------------------
     
     # Test remove_duplicates
     print("\nRemoving duplicates:")
     ll.remove_duplicates()
     ll.display()
+
+    #-------------------------------
     
     # Test find_middle
     print("\nMiddle element of the list:", ll.find_middle())
+
+    #-------------------------------
     
     # Test has_cycle
     print("\nChecking for cycle in the list:", ll.has_cycle())
+
+    #-------------------------------
     
     # Test Rotation
     print("\nRotating the list by 2:")
     ll.rotate(2)
     ll.display()
+
+    #-------------------------------
     
     # Test Nth node from end
     n = 2
     print(f"\n{n}th node from the end:", ll.nth_from_end(n))
+
+    #-------------------------------
     
     # Test delete last occurrence
     ll.append(3)
     print("\nDeleting last occurrence of 3:")
     ll.delete_last_occurrence(3)
     ll.display()
+
+    #-------------------------------
     
     # Test delete middle
     print("\nDeleting middle node:")
     ll.delete_middle()
     ll.display()
+
+    #-------------------------------
     
     # Test removing duplicates in a sorted list
     ll_sorted = LinkedList()
@@ -534,25 +595,35 @@ def test_linked_list():
     ll_sorted.remove_duplicates_sorted()
     print("Sorted List After Removing Duplicates:")
     ll_sorted.display()
+
+    #-------------------------------
     
     # Test delete N nodes after M nodes
     print("\nDeleting 2 nodes after 2 nodes:")
     ll.delete_n_after_m(2, 2)
     ll.display()
+
+    #-------------------------------
     
     # Test remove every k-th node
     print("\nRemoving every 2nd node:")
     ll.remove_kth_node(2)
     ll.display()
+
+    #-------------------------------
     
     # Test pairwise swap
     print("\nPairwise swapping elements:")
     ll.pairwise_swap()
     ll.display()
+
+    #-------------------------------
     
     # Test occurrence count
     key = 2
     print(f"\nOccurrence of {key} in list:", ll.count_occurrences(key))
+
+    #-------------------------------
     
     # Test sort 0s, 1s, and 2s
     ll012 = LinkedList()
@@ -563,12 +634,14 @@ def test_linked_list():
     ll012.sort_012()
     print("Sorted 0-1-2 List:")
     ll012.display()
+
+ #-------------------------------
     
     # Test addition of two numbers as linked lists
     l1, l2 = LinkedList(), LinkedList()
-    for val in [2, 4, 3]:  # Represents 342
+    for val in [2, 4, 3]:  # Represents 342      # convert number to linkedlist (given reverse number in List - inorder to add them)  
         l1.append(val)
-    for val in [5, 6, 4]:  # Represents 465
+    for val in [2, 4, 0]:  # Represents 240
         l2.append(val)
     
     print("\nAdding two linked list numbers:")
@@ -578,22 +651,47 @@ def test_linked_list():
         result = result.next
     print("None")
 
-
-    # add 2 linked list
+#-------------------------------
+    # Add 2 Number using linked list
     
-    l1 = LinkedList()
-    l2 = LinkedList()
+    # # Input numbers
+    # n1 = int(input("Enter 1st number : "))  
+    # n2 = int(input("Enter 2nd number : "))  
+    n1 =  342
+    n2 = 240
     
-    n1 = int(input("Enter 1st number : "))  # 342
-    n2 = int(input("Enter 2nd number : "))  # 240
-                                            # 582 (Total)
-    while n1 : 
-        l1.append(n1%10)   # 2->4->3
-        n1 = n1 // 10   
+    # Create linked lists for both numbers
+    ln1 = LinkedList()        #ln1 : LinkedList Number 1
+    ln2 = LinkedList()       
+    
+    while n1:                   # convert number to linkedlist (reverse - inorder to add them)  
+        l1.append(n1 % 10)      # 2->4->3    [342]
+        n1 //= 10
+    
     while n2:
-        l2.append(n2%10)   # 0->4->2
-        n2 = n2 // 10
-        
+        l2.append(n2 % 10)      # 0->4->2    [240]
+        n2 //= 10
+    
+    result_ll = LinkedList()
+    result_ll = result_ll.add_two_numbers(l1.head, l2.head)       # Compute sum of 2 linked lists l1, l2
+    
+    # Print sum in reverse (default)
+    print("Sum in reversed order:")
+    result_ll.print_list()
+
+    # Reverse LList - correct order of sum
+    result_ll.reverse()
+
+    print("Sum in correct order:")
+    result_ll.print_list()
+
+    #Convert LinkedList to Integer number and print it.
+    summ = result_ll.ll_to_number()    # 582 (Total)
+    print("sum is = ",summ)
+
+    
+    #-------------------------------
+    
     # Test multiplication of two numbers as linked lists
     print("\nMultiplying two linked list numbers:")
     result = ll.multiply_two_numbers(l1.head, l2.head)
@@ -601,6 +699,7 @@ def test_linked_list():
         print(result.data, end=" -> ")
         result = result.next
     print("None")
+
     
     # Test merging two sorted lists
     l1, l2 = LinkedList(), LinkedList()
