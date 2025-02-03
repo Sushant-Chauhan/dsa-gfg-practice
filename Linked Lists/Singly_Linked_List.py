@@ -673,7 +673,7 @@ def test_linked_list():
         n2 //= 10
     
     result_ll = LinkedList()
-    result_ll = result_ll.add_two_numbers(l1.head, l2.head)       # Compute sum of 2 linked lists l1, l2
+    result_ll = result_ll.add_two_numbers2(l1.head, l2.head)       # Compute sum of 2 linked lists l1, l2
     
     # Print sum in reverse (default)
     print("Sum in reversed order:")
@@ -688,7 +688,6 @@ def test_linked_list():
     #Convert LinkedList to Integer number and print it.
     summ = result_ll.ll_to_number()    # 582 (Total)
     print("sum is = ",summ)
-
     
     #-------------------------------
     
