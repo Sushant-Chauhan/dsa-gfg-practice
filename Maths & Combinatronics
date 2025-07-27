@@ -1,0 +1,104 @@
+
+"""
+1. GCD/HCF of numbers
+2. LCM of numbers
+3. Permutations
+"""
+# 1. -------------  GCD/HCF of numbers ------------- 
+
+# 2 numbers
+def hcf_brute_force(a,b):
+    hcf = 1
+    min_of_both = min(a,b)
+    for i in range(min_of_both, 0, -1):  #start,(stop),step
+        if a%i==0 and b%i==0:
+            return i               # early exit as soon as we find the : highest common factor (hcf) / greatest common divisor (gcd)      
+    return 1                        # Fallback (if no GCD found other than 1)
+
+
+# --- more than 2 NUMBERS --- 
+def gcd_brute_force(numbers):
+    min_val = min(numbers)
+    for i in range(min_val, 0, -1):                 # Start from min and go down
+        if all(n%i==0 for n in numbers):
+            return i                               # highest common divisor / first common divisor from the top
+    return 1                                        # Fallback (if no GCD found other than 1)
+
+
+def gcd_euclid(a,b):   
+    while a!=b:
+        if a>b:   
+            a = a-b
+        else:
+            b = b-a  
+    return a
+    
+    
+def gcd_optimized_euclid_algo(a,b):
+    while a!=0 and b!=0:
+        if a>b:
+            a = a%b
+        else:
+            b = b%a
+    return a if a!=0 else b
+  
+    
+# ------------- 2. LCM of numbers ------------- 
+
+def lcm_optimized_euclid_algo(a,b):
+    ans = (a*b)/gcd_optimized_euclid_algo(a,b)
+    return ans
+# ----
+# LCM(a,b) * HCF(a,b) = a * b
+# LCM(a,b)            = a * b / HCF(a,b)
+# ----
+
+
+def lcm_brute_force(a,b):
+    res = max(a,b)
+    while(True):
+        if res%a==0 and res%b==0:
+            break
+        res+=1
+    return res 
+    
+# lcm(3,7) = 21git
+# TC = O( m*n - max(m,n) )
+    
+# ---
+
+print("HCF of 2 numbers : (brute force) - O(min(a,b)) ")
+print(hcf_brute_force(20,15))     # Output: 5   - 11 steps
+print(hcf_brute_force(100, 25))   # Output: 25
+print(hcf_brute_force(49, 14))    # Output: 7
+print(hcf_brute_force(49, 117))    # Output: 1  
+print(hcf_brute_force(1173, 1133)) # no. of step = 1133 times 
+print("HCF of n numbers :  (brute force) - O(min([numbers])) ")
+print(gcd_brute_force([12, 24, 36]))    # Output: 12
+print(gcd_brute_force([5, 10, 25]))     # Output: 5
+print(gcd_brute_force([17, 34, 51]))    # Output: 17
+print(gcd_brute_force([4, 9, 25]))      # Output: 1 (no common factor except 1)
+print("HCF of 2 numbers :  (Euclid's Approach) - O(max(a,b)) ")  #but takes less steps than brute force approach
+print(gcd_euclid(20,15)) # Output: 5   - 3 steps   [ so 12 steps reduced]
+print(gcd_euclid(100, 25))
+print(gcd_euclid(49, 14))
+print(gcd_euclid(49, 117))
+print(gcd_euclid(1173, 1133)) #   no. of step will be more as need to do substraction till a!=b ---> so Optimised found
+print("HCF of 2 numbers :  (Optimised Euclid's Approach) - O(log(min(a,b)) ")  # Lograthmic Time Complexity  (becoz Every Time Value is reduced to LESS than Half ) i.e.  a/2 or b/2 > (a%b) or (b%a)               
+print(gcd_optimized_euclid_algo(12,8))
+print(gcd_optimized_euclid_algo(100, 25))
+print(gcd_optimized_euclid_algo(49, 14))
+print(gcd_optimized_euclid_algo(49, 117))
+print(gcd_optimized_euclid_algo(1173, 1133)) # no. of step will be very less.
+print("LCM of 2 numbers :  (brute force)") ### TC = O( m*n - max(m,n) )
+print(lcm_brute_force(3,7))   # 21 -> Loop executed :  3*7 - max(3,7) = 14 times
+print("LCM of 2 numbers :  (Optimised Euclid's Approach)") ### TC = O( log (min(a,b))    [ becoz number i.e n*m has constant TC , so it depends on denominator i.e.Optimised Euclid's Approach ]
+print(lcm_optimized_euclid_algo(3,7))
+
+
+# -------------  3. Permutations ------------- 
+
+# Print All The Permutations Of A String Using Recursion
+
+
+
